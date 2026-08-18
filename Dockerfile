@@ -1,7 +1,11 @@
 FROM ghcr.io/engineer-man/piston:latest
 
-# The base entrypoint chowns this data directory before starting the API.
-# Railway does not provide the local Compose volume, so create it in the image.
-RUN mkdir -p /piston/packages
+# Create writable directories
+RUN mkdir -p /piston/packages /isolate /tmp \
+    && chmod 777 /isolate /tmp
+
+# Override entrypoint to use writable paths
+ENV ISOLATE_DIR=/isolate
+ENV TMP_DIR=/tmp
 
 EXPOSE 2000
