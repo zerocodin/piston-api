@@ -10,4 +10,4 @@ RUN mkdir -p /tmp/piston /tmp/piston/packages
 EXPOSE 2000
 
 # Use the default CMD from the base image
-CMD ["node", "/piston/api/src/index.js"]
+CMD ["node", "/api/src/index.js"]
